@@ -48,7 +48,7 @@ const formatKey = (key: string) => {
 const ShortcutRecorder: React.FC<ShortcutInputProps> = ({
   value,
   onChange,
-  placeholder = "Click to set shortcut"
+  placeholder = "点击设置快捷键"
 }) => {
   const [isRecording, setIsRecording] = useState(false);
   const inputRef = useRef<HTMLDivElement>(null);
@@ -135,7 +135,7 @@ const ShortcutRecorder: React.FC<ShortcutInputProps> = ({
       >
         {isRecording ? (
           <span className="text-primary font-medium ml-2">
-            Press your combination. Esc to cancel.
+            请按下想要的按键组合，按 Esc 取消。
           </span>
         ) : (
           <div className="flex gap-2">
