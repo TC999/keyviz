@@ -9,10 +9,10 @@ import { SidebarItem } from "@/components/ui/sidebar-item";
 import { ComputerIcon, InformationSquareIcon, KeyboardIcon, Mouse09Icon, Settings03Icon } from "@hugeicons/core-free-icons";
 
 const sideBar = [
-    { title: "General", icon: Settings03Icon },
-    { title: "Appearance", icon: ComputerIcon },
-    { title: "Keycap", icon: KeyboardIcon },
-    { title: "Mouse", icon: Mouse09Icon },
+    { title: "常规", icon: Settings03Icon },
+    { title: "外观", icon: ComputerIcon },
+    { title: "键帽", icon: KeyboardIcon },
+    { title: "鼠标", icon: Mouse09Icon },
 ]
 
 const Settings = () => {
@@ -36,19 +36,19 @@ const Settings = () => {
                     ))
                 }
                 <div className="mt-auto flex gap-2 items-center">
-                    <a key="about" onClick={() => setActiveTab("About")} className="flex-1 cursor-pointer">
-                        <SidebarItem item={{ title: "About", icon: InformationSquareIcon }} isActive={activeTab === "About"} />
+                    <a key="about" onClick={() => setActiveTab("关于")} className="flex-1 cursor-pointer">
+                        <SidebarItem item={{ title: "关于", icon: InformationSquareIcon }} isActive={activeTab === "关于"} />
                     </a>
                     <ThemeModeToggle />
                 </div>
             </div>
             <Separator orientation="vertical" />
             <ScrollArea className="flex-1 relative">
-                {activeTab === "General" && <GeneralSettings />}
-                {activeTab === "Appearance" && <AppearanceSettings />}
-                {activeTab === "Keycap" && <KeycapSettings />}
-                {activeTab === "Mouse" && <MouseSettings />}
-                {activeTab === "About" && <AboutPage />}
+                {activeTab === "常规" && <GeneralSettings />}
+                {activeTab === "外观" && <AppearanceSettings />}
+                {activeTab === "键帽" && <KeycapSettings />}
+                {activeTab === "鼠标" && <MouseSettings />}
+                {activeTab === "关于" && <AboutPage />}
             </ScrollArea>
         </div>
     );
