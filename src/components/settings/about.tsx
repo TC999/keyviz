@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
-import { DiscordIcon, GithubIcon, LinkSquare02Icon, SparklesIcon, StarsIcon } from "@hugeicons/core-free-icons"
+import { DiscordIcon, GithubIcon, LinkSquare02Icon, BubbleChatTranslateIcon, SparklesIcon, StarsIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { openUrl } from "@tauri-apps/plugin-opener"
 import { motion } from "motion/react"
@@ -15,28 +15,28 @@ export const AboutPage = () => {
     const [hovered, setHovered] = useState(false);
 
     const visitReleasePage = () => {
-        openUrl('https://github.com/mulaRahul/keyviz/releases');
+        openUrl('https://github.com/zetaloop/keyviz/releases');
     }
 
     const checkForUpdates = async () => {
         setChecking(true);
         try {
-            const response = await fetch('https://api.github.com/repos/mulaRahul/keyviz/releases/latest')
+            const response = await fetch('https://api.github.com/repos/zetaloop/keyviz/releases/latest')
             const data = await response.json()
             const latestVersion = data.tag_name.substring(1, 6);
             if (latestVersion !== VERSION) {
                 setUpdateAvailable(true);
                 toast.success(
-                    `New version available: v${latestVersion}`,
+                    `有新版本：v${latestVersion}`,
                     {
-                        action: { label: 'View', onClick: visitReleasePage }
+                        action: { label: '查看', onClick: visitReleasePage }
                     }
                 );
             } else {
-                toast.info("You are using the latest version.");
+                toast.info("您使用的就是最新版！");
             }
         } catch (error) {
-            toast.error("Failed to check for updates.");
+            toast.error("无法检查更新。");
         }
         setChecking(false);
     }
@@ -105,10 +105,10 @@ export const AboutPage = () => {
                 >
                     <ItemContent>
                         <ItemTitle>
-                            <HugeiconsIcon icon={SparklesIcon} size="1em" /> Upgrade to Pro
+                            <HugeiconsIcon icon={SparklesIcon} size="1em" /> 升级 Pro
                         </ItemTitle>
                         <ItemDescription>
-                            Love Keyviz? Support its growth and unlock more with Pro.
+                            觉得 Keyviz 好用吗？升级 Pro 可以获享更多功能，支持项目发展。
                         </ItemDescription>
                     </ItemContent>
                     <ItemActions>
@@ -116,7 +116,7 @@ export const AboutPage = () => {
                             variant={hovered ? "default" : "outline"}
                             onClick={() => openUrl('https://keyviz.org/pro')}
                         >
-                            Go Pro
+                            升级
                         </Button>
                     </ItemActions>
                 </Item>
@@ -125,14 +125,14 @@ export const AboutPage = () => {
             <Item variant="muted" className="transition-all peer-hover:blur-xs">
                 <ItemContent>
                     <ItemTitle>
-                        <HugeiconsIcon icon={StarsIcon} size="1em" /> Check for updates
+                        <HugeiconsIcon icon={StarsIcon} size="1em" /> 检查更新
                     </ItemTitle>
                 </ItemContent>
                 <ItemActions>
                     {
                         updateAvailable
-                            ? <Button className="cursor-pointer" onClick={visitReleasePage}>Update Available</Button>
-                            : <Button variant="outline" onClick={checkForUpdates} disabled={checking}>Check</Button>
+                            ? <Button className="cursor-pointer" onClick={visitReleasePage}>有新版本</Button>
+                            : <Button variant="outline" onClick={checkForUpdates} disabled={checking}>检查</Button>
                     }
                 </ItemActions>
             </Item>
@@ -140,15 +140,18 @@ export const AboutPage = () => {
             <Item variant="muted" className="transition-all peer-hover:blur-xs">
                 <ItemContent>
                     <ItemTitle>
-                        <HugeiconsIcon icon={GithubIcon} size="1em" /> Open Source
+                        <HugeiconsIcon icon={GithubIcon} size="1em" /> 开源
                     </ItemTitle>
                     <ItemDescription className="max-w-100">
-                        Review the source code on GitHub, sponsor, star the project, or contribute to its development.
+                        代码托管于 GitHub，欢迎查阅、赞助、点亮星标、参与贡献。
                     </ItemDescription>
                 </ItemContent>
                 <ItemActions>
                     <Button variant="outline" size="icon" onClick={() => openUrl('https://github.com/mulaRahul/keyviz')}>
                         <HugeiconsIcon icon={LinkSquare02Icon} />
+                    </Button>
+                    <Button variant="outline" size="icon" onClick={() => openUrl('https://github.com/zetaloop/keyviz')}>
+                        <HugeiconsIcon icon={BubbleChatTranslateIcon} />
                     </Button>
                 </ItemActions>
             </Item>
@@ -159,7 +162,7 @@ export const AboutPage = () => {
                         <HugeiconsIcon icon={DiscordIcon} size="1em" /> Discord
                     </ItemTitle>
                     <ItemDescription className="max-w-100">
-                        Join our Discord community.
+                        加入我们的 Discord 社区。
                     </ItemDescription>
                 </ItemContent>
                 <ItemActions>
