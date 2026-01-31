@@ -11,7 +11,7 @@ const Settings = lazy(() => import("./pages/settings"));
 function App() {
   return (
     <HashRouter>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>加载中...</div>}>
         <Routes>
           <Route path="/" element={<Visualization />} />
           <Route path="/settings" element={
