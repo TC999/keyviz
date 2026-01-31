@@ -33,19 +33,19 @@ export const AppearanceSettings = () => {
     }, []);
 
     return <div className="flex flex-col gap-y-4 p-6">
-        <h1 className="text-xl font-semibold">Appearance</h1>
+        <h1 className="text-xl font-semibold">外观</h1>
 
-        <h2 className="text-sm text-muted-foreground font-medium">Position</h2>
+        <h2 className="text-sm text-muted-foreground font-medium">位置</h2>
         {
             monitors.length > 1 &&
             <Item variant="muted">
                 <ItemContent>
                     <ItemTitle>
                         <HugeiconsIcon icon={ComputerIcon} size="1em" />
-                        Display
+                        显示器
                     </ItemTitle>
                     <ItemDescription>
-                        Change monitor/display for the visualisation.
+                        在哪个屏幕显示可视化按键。
                     </ItemDescription>
                 </ItemContent>
                 <ItemActions>
@@ -63,14 +63,14 @@ export const AppearanceSettings = () => {
                         }}
                     >
                         <SelectTrigger className="w-32">
-                            <SelectValue placeholder="Select Display" />
+                            <SelectValue placeholder="选择显示器" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
                                 {
                                     monitors.map((monitor, index) => (
                                         <SelectItem key={monitor.name} value={monitor.name ?? index.toString()}>
-                                            {monitor.name ?? `Display ${index + 1}`} ({monitor.size.width}x{monitor.size.height})
+                                            {monitor.name ?? `显示器 ${index + 1}`} ({monitor.size.width}x{monitor.size.height})
                                         </SelectItem>
                                     ))
                                 }
@@ -84,10 +84,10 @@ export const AppearanceSettings = () => {
         <Item variant="muted">
             <ItemContent className="self-start">
                 <ItemTitle>
-                    <HugeiconsIcon icon={TextAlignLeftIcon} size="1em" /> Alignment
+                    <HugeiconsIcon icon={TextAlignLeftIcon} size="1em" /> 位置
                 </ItemTitle>
                 <ItemDescription>
-                    Position of the key visualization on the screen
+                    在屏幕的哪个位置显示可视化按键。
                 </ItemDescription>
             </ItemContent>
             <ItemActions>
@@ -103,10 +103,10 @@ export const AppearanceSettings = () => {
         <Item variant="muted">
             <ItemContent>
                 <ItemTitle>
-                    <HugeiconsIcon icon={ParagraphSpacingIcon} size="1em" /> Margin
+                    <HugeiconsIcon icon={ParagraphSpacingIcon} size="1em" /> 边距
                 </ItemTitle>
                 <ItemDescription>
-                    Space from the edge of the screen
+                    按键与屏幕边缘之间的距离。
                 </ItemDescription>
             </ItemContent>
             <ItemActions>
@@ -128,7 +128,7 @@ export const AppearanceSettings = () => {
                             setAppearance({ marginY: appearance.marginX });
                         }
                     }}
-                    aria-label="Margin linked"
+                    aria-label="锁定边距长宽"
                 >
                     <HugeiconsIcon icon={marginLinked ? Link02Icon : Unlink02Icon} size="1em" />
                 </Toggle>
@@ -145,14 +145,14 @@ export const AppearanceSettings = () => {
             </ItemActions>
         </Item>
 
-        <h2 className="text-sm text-muted-foreground font-medium">Animation</h2>
+        <h2 className="text-sm text-muted-foreground font-medium">动画</h2>
         <Item variant="muted">
             <ItemContent>
                 <ItemTitle>
-                    <HugeiconsIcon icon={Time03Icon} size="1em" /> Duration
+                    <HugeiconsIcon icon={Time03Icon} size="1em" /> 时长
                 </ItemTitle>
                 <ItemDescription className="max-w-84">
-                    The duration keys stay on screen (in seconds)
+                    按键停留在屏幕上的秒数。
                 </ItemDescription>
             </ItemContent>
             <ItemActions>
@@ -169,7 +169,7 @@ export const AppearanceSettings = () => {
         <Item variant="muted">
             <ItemContent>
                 <ItemTitle>
-                    <HugeiconsIcon icon={KeyframesDoubleIcon} size="1em" /> Animation
+                    <HugeiconsIcon icon={KeyframesDoubleIcon} size="1em" /> 动画
                 </ItemTitle>
             </ItemContent>
             <ItemActions>
@@ -179,11 +179,11 @@ export const AppearanceSettings = () => {
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            <SelectItem value="none">None</SelectItem>
-                            <SelectItem value="fade">Fade</SelectItem>
-                            <SelectItem value="zoom">Zoom</SelectItem>
-                            <SelectItem value="float">Float</SelectItem>
-                            <SelectItem value="slide">Slide</SelectItem>
+                            <SelectItem value="none">无</SelectItem>
+                            <SelectItem value="fade">淡入</SelectItem>
+                            <SelectItem value="zoom">放大</SelectItem>
+                            <SelectItem value="float">漂浮</SelectItem>
+                            <SelectItem value="slide">滑动</SelectItem>
                         </SelectGroup>
                     </SelectContent>
                 </Select>
@@ -193,10 +193,10 @@ export const AppearanceSettings = () => {
         <Item variant="muted">
             <ItemContent>
                 <ItemTitle>
-                    <HugeiconsIcon icon={KeyframesDoubleRemoveIcon} size="1em" /> Animation Speed
+                    <HugeiconsIcon icon={KeyframesDoubleRemoveIcon} size="1em" /> 动画速度
                 </ItemTitle>
                 <ItemDescription>
-                    Higher the value, slower the animation
+                    出现与消失动画播放的秒数。
                 </ItemDescription>
             </ItemContent>
             <ItemActions>
