@@ -47,14 +47,14 @@ impl AppState {
 
         if self.listening {
             println!("🟢 Listening enabled");
-            toggle.set_text("Stop").unwrap();
+            toggle.set_text("关闭").unwrap();
             app.tray_by_id("keyviz-tray")
                 .unwrap()
                 .set_icon(Some(Image::from(include_image!("icons/tray.png"))))
                 .unwrap();
         } else {
             println!("🔴 Listening disabled");
-            toggle.set_text("Start").unwrap();
+            toggle.set_text("开启").unwrap();
             app.tray_by_id("keyviz-tray")
                 .unwrap()
                 .set_icon(Some(Image::from(include_image!("icons/tray-disabled.png"))))

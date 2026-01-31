@@ -35,9 +35,9 @@ pub fn run() {
             app.manage(Mutex::new(AppState::new(&app_handle)));
 
             // tray actions
-            let toggle_item = MenuItem::with_id(app, "toggle", "Stop", true, None::<&str>)?;
-            let settings_item = MenuItem::with_id(app, "settings", "Settings", true, None::<&str>)?;
-            let quit_item = MenuItem::with_id(app, "quit", "Quit", true, None::<&str>)?;
+            let toggle_item = MenuItem::with_id(app, "toggle", "关闭", true, None::<&str>)?;
+            let settings_item = MenuItem::with_id(app, "settings", "设置", true, None::<&str>)?;
+            let quit_item = MenuItem::with_id(app, "quit", "退出", true, None::<&str>)?;
 
             // start global input listener
             start_listener(app_handle.clone(), toggle_item.clone());
