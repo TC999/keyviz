@@ -35,17 +35,17 @@ export const GeneralSettings = () => {
     const setAppearance = useKeyStyle(state => state.setAppearance);
 
     return <div className="flex flex-col gap-y-4 p-6">
-        <h1 className="text-xl font-semibold">General</h1>
+        <h1 className="text-xl font-semibold">常规</h1>
 
         <Item variant="muted">
             <ItemContent>
                 <ItemTitle>
-                    <HugeiconsIcon icon={FilterIcon} size="1em" /> Filter
+                    <HugeiconsIcon icon={FilterIcon} size="1em" /> 过滤器
                 </ItemTitle>
                 <ItemDescription>
-                    {filter === 'none' && 'No filter applied, all keys will be shown.'}
-                    {filter === 'modifiers' && 'Only modifier keys will be shown.'}
-                    {filter === 'custom' && `Custom filter applied, ${allowedKeys.length} keys allowed.`}
+                    {filter === 'none' && '过滤器已关闭，显示所有按键。'}
+                    {filter === 'modifiers' && '只显示快捷键。'}
+                    {filter === 'custom' && `只显示所选的 ${allowedKeys.length} 个按键。`}
                 </ItemDescription>
             </ItemContent>
             <ItemActions>
@@ -60,8 +60,8 @@ export const GeneralSettings = () => {
                         <DrawerContent>
                             <DrawerContent>
                                 <DrawerHeader>
-                                    <DrawerTitle>Custom Filter</DrawerTitle>
-                                    <DrawerDescription>Select which keys to display. Hold down Ctrl to toggle related keys.</DrawerDescription>
+                                    <DrawerTitle>自定义过滤器</DrawerTitle>
+                                    <DrawerDescription>选择哪些按键要显示，按住 Ctrl 可以切换一整个类别的按键。</DrawerDescription>
                                 </DrawerHeader>
                                 <CustomFilter />
                             </DrawerContent>
@@ -75,9 +75,9 @@ export const GeneralSettings = () => {
                     value={filter}
                     onValueChange={(value) => setFilter(value as KeyEventState["filter"])}
                 >
-                    <ToggleGroupItem value="none" aria-label="No Filter">Off</ToggleGroupItem>
-                    <ToggleGroupItem value="modifiers" aria-label="Modifiers Only">Hotkeys</ToggleGroupItem>
-                    <ToggleGroupItem value="custom" aria-label="Custom Filter">Custom</ToggleGroupItem>
+                    <ToggleGroupItem value="none" aria-label="无过滤器">关闭</ToggleGroupItem>
+                    <ToggleGroupItem value="modifiers" aria-label="仅快捷键">快捷键</ToggleGroupItem>
+                    <ToggleGroupItem value="custom" aria-label="自定义过滤器">自定义</ToggleGroupItem>
                 </ToggleGroup>
             </ItemActions>
         </Item>
@@ -85,10 +85,10 @@ export const GeneralSettings = () => {
         <Item variant="muted">
             <ItemContent>
                 <ItemTitle>
-                    <HugeiconsIcon icon={LayerIcon} size="1em" /> History
+                    <HugeiconsIcon icon={LayerIcon} size="1em" /> 历史记录
                 </ItemTitle>
                 <ItemDescription>
-                    Keep previously pressed keystrokes in the view
+                    将按过的按键依次显示。
                 </ItemDescription>
             </ItemContent>
             <ItemActions>
@@ -99,7 +99,7 @@ export const GeneralSettings = () => {
         <div className={cn("flex flex-col gap-4 md:flex-row", showEventHistory ? "" : "pointer-events-none opacity-50", "transition-opacity")}>
             <Item variant="muted" className="flex-7">
                 <ItemContent>
-                    <ItemTitle>Direction</ItemTitle>
+                    <ItemTitle>方向</ItemTitle>
                 </ItemContent>
                 <ItemActions>
                     <ToggleGroup
@@ -109,18 +109,18 @@ export const GeneralSettings = () => {
                         value={direction}
                         onValueChange={(value) => setAppearance({ flexDirection: value as KeyStyleState["appearance"]["flexDirection"] })}
                     >
-                        <ToggleGroupItem value="row" aria-label="Horizontal">
-                            <HugeiconsIcon icon={ArrowHorizontalIcon} strokeWidth={2} size={10} /> Row
+                        <ToggleGroupItem value="row" aria-label="水平">
+                            <HugeiconsIcon icon={ArrowHorizontalIcon} strokeWidth={2} size={10} /> 行
                         </ToggleGroupItem>
-                        <ToggleGroupItem value="column" aria-label="Vertical">
-                            <HugeiconsIcon icon={ArrowVerticalIcon} strokeWidth={2} /> Column
+                        <ToggleGroupItem value="column" aria-label="垂直">
+                            <HugeiconsIcon icon={ArrowVerticalIcon} strokeWidth={2} /> 列
                         </ToggleGroupItem>
                     </ToggleGroup>
                 </ItemActions>
             </Item>
             <Item variant="muted" className="flex-5">
                 <ItemContent>
-                    <ItemTitle>Max Count</ItemTitle>
+                    <ItemTitle>最大数量</ItemTitle>
                 </ItemContent>
                 <ItemActions className="max-w-20">
                     <NumberInput className="h-8" value={maxHistory} onChange={setMaxHistory} minValue={2} maxValue={12} />
@@ -131,10 +131,10 @@ export const GeneralSettings = () => {
         <Item variant="muted">
             <ItemHeader className="flex-col items-start">
                 <ItemTitle>
-                    <HugeiconsIcon icon={ToggleOnIcon} size="1em" /> Toggle Shortcut
+                    <HugeiconsIcon icon={ToggleOnIcon} size="1em" /> 全局开关
                 </ItemTitle>
                 <ItemDescription>
-                    Global shortcut to show/hide the key visualizer, click box to set
+                    按下这个快捷键，切换可视化的开启关闭。点击下面的框来设置。
                 </ItemDescription>
             </ItemHeader>
             <ItemContent>
