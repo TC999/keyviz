@@ -171,7 +171,7 @@ const createKeyStyleStore = createSyncedStore<KeyStyleStore>(
                 const filePath = await open({
                     multiple: false,
                     filters: [{
-                        name: 'JSON Files',
+                        name: 'JSON 文件',
                         extensions: ['json']
                     }]
                 });
@@ -185,7 +185,7 @@ const createKeyStyleStore = createSyncedStore<KeyStyleStore>(
                     !parsedData.modifier || !parsedData.text || !parsedData.border ||
                     !parsedData.background || !parsedData.mouse
                 ) {
-                    toast.warning("Invalid file format", { description: filePath });
+                    toast.warning("文件格式不正确", { description: filePath });
                     return;
                 }
                 set(() => ({
@@ -198,9 +198,9 @@ const createKeyStyleStore = createSyncedStore<KeyStyleStore>(
                     background: parsedData.background,
                     mouse: parsedData.mouse,
                 }));
-                toast.success("Imported successfully", { description: filePath });
+                toast.success("导入成功", { description: filePath });
             } catch (err) {
-                toast.error("Error importing file", {
+                toast.error("导入失败", {
                     description: err instanceof Error ? err.message : String(err),
                 })
             }
@@ -220,13 +220,13 @@ const createKeyStyleStore = createSyncedStore<KeyStyleStore>(
             try {
                 const filePath = await save({
                     defaultPath: "key_style.json",
-                    filters: [{ name: "JSON Files", extensions: ["json"] }],
+                    filters: [{ name: "JSON 文件", extensions: ["json"] }],
                 });
                 if (!filePath) return;
                 await writeTextFile(filePath, JSON.stringify(exportData, null, 2));
-                toast.success("Exported successfully", { description: filePath });
+                toast.success("导出成功", { description: filePath });
             } catch (err) {
-                toast.error("Error exporting file", {
+                toast.error("导出失败", {
                     description: err instanceof Error ? err.message : String(err),
                 })
             }
