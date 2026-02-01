@@ -10,10 +10,20 @@ import { listen } from "@tauri-apps/api/event";
 import { availableMonitors, getCurrentWindow, primaryMonitor } from "@tauri-apps/api/window";
 import { useEffect, useState, } from "react";
 
+type PersistApi = {
+  hasHydrated?: () => boolean;
+  onFinishHydration?: (cb: () => void) => () => void;
+};
+
 export function Visualization() {
   const monitor = useKeyStyle((state) => state.appearance.monitor);
   const onEvent = useKeyEvent((state) => state.onEvent);
   const tick = useKeyEvent((state) => state.tick);
+
+  const [keyStyleHydrated, setKeyStyleHydrated] = useState(() => {
+    const persist = (useKeyStyle as unknown as { persist?: PersistApi }).persist;
+    return persist?.hasHydrated?.() ?? true;
+  });
 
   const [monitorRects, setMonitorRects] = useState<Array<{
     key: string;
@@ -49,10 +59,30 @@ export function Visualization() {
   }, []);
 
   useEffect(() => {
+    const persist = (useKeyStyle as unknown as { persist?: PersistApi }).persist;
+    if (!persist?.onFinishHydration) {
+      setKeyStyleHydrated(true);
+      return;
+    }
+    if (persist.hasHydrated?.()) {
+      setKeyStyleHydrated(true);
+      return;
+    }
+    return persist.onFinishHydration(() => setKeyStyleHydrated(true));
+  }, []);
+
+  useEffect(() => {
+    if (!keyStyleHydrated) {
+      return;
+    }
+
+    let cancelled = false;
+
     const set_monitor = async () => {
       let monitorName = monitor;
       if (!monitorName) {
         const primary = await primaryMonitor();
+        if (cancelled) return;
         monitorName = primary?.name ?? "";
       }
       if (!monitorName) return;
@@ -89,7 +119,10 @@ export function Visualization() {
       })));
     }
     set_monitor();
-  }, [monitor]);
+    return () => {
+      cancelled = true;
+    };
+  }, [monitor, keyStyleHydrated]);
 
   if (!isListening) return null;
 
