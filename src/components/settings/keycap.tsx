@@ -23,85 +23,85 @@ export interface KeycapTheme {
 
 export const colorSchemes: KeycapTheme[] = [
     {
-        name: "Silver",
+        name: "银白",
         primary: "#f8f8f8",
         secondary: "#dcdcdc",
         text: "#000000",
     },
     {
-        name: "Stone",
+        name: "岩灰",
         primary: "#606060",
         secondary: "#4b4b4b",
         text: "#f8f8f8",
     },
     {
-        name: "Lime",
+        name: "青柠",
         primary: "#606060",
         secondary: "#4b4b4b",
         text: "#D6ED17",
     },
     {
-        name: "Cyber",
+        name: "赛博",
         primary: "#00B1D2",
         secondary: "#008ea8",
         text: "#FDDB27",
     },
     {
-        name: "Turquoise",
+        name: "松石",
         primary: "#42EADD",
         secondary: "#2ec4b8",
         text: "#ffffff",
     },
     {
-        name: "Blue",
+        name: "蓝色",
         primary: "#2196f3",
         secondary: "#1976d2",
         text: "#ffffff",
     },
     {
-        name: "Yellow",
+        name: "黄色",
         primary: "#FDDB27",
         secondary: "#dfc019",
         text: "#000000",
     },
     {
-        name: "Green",
+        name: "绿色",
         primary: "#66bb6a",
         secondary: "#43a047",
         text: "#ffffff",
     },
     {
-        name: "Pink",
+        name: "粉色",
         primary: "#f06292",
         secondary: "#d81b60",
         text: "#ffffff",
     },
     {
-        name: "Red",
+        name: "红色",
         primary: "#ef5350",
         secondary: "#c62828",
         text: "#ffffff",
     },
     {
-        name: "Pansy",
+        name: "紫堇",
         primary: "#673ab7",
         secondary: "#4527a0",
         text: "#ffc107",
     },
     {
-        name: "Eclipse",
+        name: "日蚀",
         primary: "#343148",
         secondary: "#252333",
         text: "#D7C49E",
     },
     {
-        name: "Bumblebee",
+        name: "蜂黄",
         primary: "#404040",
         secondary: "#2e2e2e",
         text: "#FDDB27",
     },
     {
-        name: "Charcoal",
+        name: "炭灰",
         primary: "#404040",
         secondary: "#2e2e2e",
         text: "#FFFFFF",
@@ -169,9 +169,9 @@ export const KeycapSettings = () => {
     }
 
     return <div className="flex flex-col p-6 gap-y-4">
-        <h1 className="text-xl font-semibold">Keycap</h1>
+        <h1 className="text-xl font-semibold">键帽</h1>
 
-        <h2 className="text-sm text-muted-foreground font-medium">Preset</h2>
+        <h2 className="text-sm text-muted-foreground font-medium">预设</h2>
         <Item variant="muted">
             <ItemActions className="w-full">
                 <Select value={appearance.style} onValueChange={onStyleChange}>
@@ -180,10 +180,10 @@ export const KeycapSettings = () => {
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            <SelectItem value="minimal">Minimal</SelectItem>
-                            <SelectItem value="laptop">Laptop</SelectItem>
-                            <SelectItem value="lowprofile">Lowprofile</SelectItem>
-                            <SelectItem value="pbt" >PBT</SelectItem>
+                            <SelectItem value="minimal">极简</SelectItem>
+                            <SelectItem value="laptop">笔记本</SelectItem>
+                            <SelectItem value="lowprofile">矮轴</SelectItem>
+                            <SelectItem value="pbt" >机械</SelectItem>
                         </SelectGroup>
                     </SelectContent>
                 </Select>
@@ -220,17 +220,17 @@ export const KeycapSettings = () => {
                 </Button>
 
                 <Button variant="outline" size="sm" className="ml-auto" onClick={importStyle}>
-                    <HugeiconsIcon icon={Download01Icon} className="mr-2" /> Import
+                    <HugeiconsIcon icon={Download01Icon} className="mr-2" /> 导入
                 </Button>
                 <Button variant="outline" size="sm" onClick={exportStyle}>
-                    <HugeiconsIcon icon={Upload01Icon} className="mr-2" /> Export
+                    <HugeiconsIcon icon={Upload01Icon} className="mr-2" /> 导出
                 </Button>
             </ItemActions>
         </Item>
 
         <Collapsible defaultOpen={true}>
             <CollapsibleTrigger>
-                <h2 className="text-sm text-muted-foreground font-medium">Text</h2>
+                <h2 className="text-sm text-muted-foreground font-medium">文字</h2>
             </CollapsibleTrigger>
             <CollapsibleContent className="flex flex-col gap-y-4 pt-4">
                 <ItemGrid className="md:grid-cols-[240px_1fr]">
@@ -242,7 +242,7 @@ export const KeycapSettings = () => {
                     <ItemGroup>
                         <Item variant="muted" className="flex-2">
                             <ItemContent>
-                                <ItemTitle>Size</ItemTitle>
+                                <ItemTitle>字号</ItemTitle>
                             </ItemContent>
                             <ItemActions>
                                 <NumberInput
@@ -254,7 +254,7 @@ export const KeycapSettings = () => {
                         </Item>
                         <Item variant="muted" className="flex-2">
                             <ItemContent>
-                                <ItemTitle>Variant</ItemTitle>
+                                <ItemTitle>格式</ItemTitle>
                             </ItemContent>
                             <ItemActions>
                                 <Select value={text.variant} onValueChange={(value) => {
@@ -264,12 +264,12 @@ export const KeycapSettings = () => {
                                     }
                                 }}>
                                     <SelectTrigger className="w-28">
-                                        <SelectValue placeholder="text variant" />
+                                        <SelectValue placeholder="文字格式" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="text">Full Text</SelectItem>
-                                        <SelectItem value="text-short">Short Text</SelectItem>
-                                        <SelectItem value="icon">Icon Only</SelectItem>
+                                        <SelectItem value="text">完整名</SelectItem>
+                                        <SelectItem value="text-short">缩写名</SelectItem>
+                                        <SelectItem value="icon">仅图标</SelectItem>
                                     </SelectContent>
                                 </Select>
 
@@ -277,7 +277,7 @@ export const KeycapSettings = () => {
                         </Item>
                         <Item variant="muted" className="flex-2">
                             <ItemContent>
-                                <ItemTitle>Text Cap</ItemTitle>
+                                <ItemTitle>大小写</ItemTitle>
                             </ItemContent>
                             <ItemActions>
                                 <ToggleGroup
@@ -297,7 +297,7 @@ export const KeycapSettings = () => {
                 <ItemGrid>
                     <Item variant="muted" className={modifier.highlight ? "" : "col-span-2"}>
                         <ItemContent>
-                            <ItemTitle>Text Color</ItemTitle>
+                            <ItemTitle>文字颜色</ItemTitle>
                         </ItemContent>
                         <ItemActions>
                             <ColorInput value={text.color} onChange={(color) => setTextStyle({ color })} />
@@ -307,7 +307,7 @@ export const KeycapSettings = () => {
                         modifier.highlight &&
                         <Item variant="muted">
                             <ItemContent>
-                                <ItemTitle>Modifier Color</ItemTitle>
+                                <ItemTitle>修饰键文字颜色</ItemTitle>
                             </ItemContent>
                             <ItemActions>
                                 <ColorInput value={modifier.textColor} onChange={(textColor) => setModifierStyle({ textColor })} />
@@ -320,13 +320,13 @@ export const KeycapSettings = () => {
 
         <Collapsible>
             <CollapsibleTrigger>
-                <h2 className="text-sm text-muted-foreground font-medium">Layout</h2>
+                <h2 className="text-sm text-muted-foreground font-medium">布局</h2>
             </CollapsibleTrigger>
             <CollapsibleContent className="flex flex-col gap-y-4 pt-4">
                 <ItemGrid>
                     <Item variant="muted">
                         <ItemContent>
-                            <ItemTitle>Icon</ItemTitle>
+                            <ItemTitle>图标</ItemTitle>
                         </ItemContent>
                         <ItemActions>
                             <Switch
@@ -338,7 +338,7 @@ export const KeycapSettings = () => {
                     </Item>
                     <Item variant="muted">
                         <ItemContent>
-                            <ItemTitle>Alignment</ItemTitle>
+                            <ItemTitle>对齐方式</ItemTitle>
                         </ItemContent>
                         <ItemActions>
                             <ToggleGroup
@@ -364,8 +364,8 @@ export const KeycapSettings = () => {
                 </ItemGrid>
                 <Item variant="muted">
                     <ItemContent>
-                        <ItemTitle>Symbol</ItemTitle>
-                        <ItemDescription>Display symbol characters like !, @, #, etc.</ItemDescription>
+                        <ItemTitle>符号</ItemTitle>
+                        <ItemDescription>显示 !、@、# 这些按键上的符号。</ItemDescription>
                     </ItemContent>
                     <ItemActions>
                         <Switch
@@ -378,8 +378,8 @@ export const KeycapSettings = () => {
                     appearance.style !== "minimal" &&
                     <Item variant="muted">
                         <ItemContent>
-                            <ItemTitle>Press Count</ItemTitle>
-                            <ItemDescription>Display the number of times a key has been pressed.</ItemDescription>
+                            <ItemTitle>数字角标</ItemTitle>
+                            <ItemDescription>显示按键按下的次数。</ItemDescription>
                         </ItemContent>
                         <ItemActions>
                             <Switch
@@ -396,13 +396,13 @@ export const KeycapSettings = () => {
             appearance.style !== "minimal" &&
             <Collapsible>
                 <CollapsibleTrigger>
-                    <h2 className="text-sm text-muted-foreground font-medium">Color</h2>
+                    <h2 className="text-sm text-muted-foreground font-medium">颜色</h2>
                 </CollapsibleTrigger>
                 <CollapsibleContent className="flex flex-col gap-y-4 pt-4">
                     <Item variant="muted">
                         <ItemContent>
-                            <ItemTitle>Highlight Modifier</ItemTitle>
-                            <ItemDescription>Use different color for modifier keys</ItemDescription>
+                            <ItemTitle>高亮修饰键</ItemTitle>
+                            <ItemDescription>给修饰键使用不同的颜色。</ItemDescription>
                         </ItemContent>
                         <ItemActions>
                             <Switch checked={modifier.highlight} onCheckedChange={(highlight) => setModifierStyle({ highlight })} />
@@ -412,7 +412,7 @@ export const KeycapSettings = () => {
                         appearance.style !== "lowprofile" &&
                         <Item variant="muted">
                             <ItemContent>
-                                <ItemTitle>Gradient</ItemTitle>
+                                <ItemTitle>渐变</ItemTitle>
                             </ItemContent>
                             <ItemActions>
                                 <Switch
@@ -427,7 +427,7 @@ export const KeycapSettings = () => {
                             <ItemGrid>
                                 <Item variant="muted" className={modifier.highlight ? "" : "col-span-2"}>
                                     <ItemContent>
-                                        <ItemTitle>Normal</ItemTitle>
+                                        <ItemTitle>常规键</ItemTitle>
                                     </ItemContent>
                                     <ItemActions>
                                         <ColorInput value={color.color} onChange={(color) => setColorStyle({ color })} />
@@ -437,7 +437,7 @@ export const KeycapSettings = () => {
                                     modifier.highlight &&
                                     <Item variant="muted">
                                         <ItemContent>
-                                            <ItemTitle>Modifier</ItemTitle>
+                                            <ItemTitle>修饰键</ItemTitle>
                                         </ItemContent>
                                         <ItemActions>
                                             <ColorInput value={modifier.color} onChange={(color) => setModifierStyle({ color })} />
@@ -446,11 +446,11 @@ export const KeycapSettings = () => {
                                 }
                             </ItemGrid> :
                             <>
-                                {modifier.highlight && <h1>Normal Color</h1>}
+                                {modifier.highlight && <h1>常规键颜色</h1>}
                                 <ItemGrid>
                                     <Item variant="muted">
                                         <ItemContent>
-                                            <ItemTitle>Primary</ItemTitle>
+                                            <ItemTitle>主色</ItemTitle>
                                         </ItemContent>
                                         <ItemActions>
                                             <ColorInput
@@ -461,7 +461,7 @@ export const KeycapSettings = () => {
                                     </Item>
                                     <Item variant="muted">
                                         <ItemContent>
-                                            <ItemTitle>Secondary</ItemTitle>
+                                            <ItemTitle>辅色</ItemTitle>
                                         </ItemContent>
                                         <ItemActions>
                                             <ColorInput
@@ -473,11 +473,11 @@ export const KeycapSettings = () => {
                                 </ItemGrid>
                                 {
                                     modifier.highlight && <>
-                                        <h1>Modifier Color</h1>
+                                        <h1>修饰键颜色</h1>
                                         <ItemGrid>
                                             <Item variant="muted">
                                                 <ItemContent>
-                                                    <ItemTitle>Primary</ItemTitle>
+                                                    <ItemTitle>主色</ItemTitle>
                                                 </ItemContent>
                                                 <ItemActions>
                                                     <ColorInput
@@ -488,7 +488,7 @@ export const KeycapSettings = () => {
                                             </Item>
                                             <Item variant="muted">
                                                 <ItemContent>
-                                                    <ItemTitle>Secondary</ItemTitle>
+                                                    <ItemTitle>辅色</ItemTitle>
                                                 </ItemContent>
                                                 <ItemActions>
                                                     <ColorInput
@@ -508,13 +508,13 @@ export const KeycapSettings = () => {
 
         <Collapsible>
             <CollapsibleTrigger>
-                <h2 className="text-sm text-muted-foreground font-medium">Border</h2>
+                <h2 className="text-sm text-muted-foreground font-medium">边框</h2>
             </CollapsibleTrigger>
             <CollapsibleContent className="flex flex-col gap-y-4 pt-4">
                 <ItemGrid>
                     <Item variant="muted">
                         <ItemContent className="min-h-6 h-full justify-center">
-                            <ItemTitle>Enable</ItemTitle>
+                            <ItemTitle>开启</ItemTitle>
                         </ItemContent>
                         <ItemActions>
                             <Switch id="borderEnabled" checked={border.enabled} onCheckedChange={(enabled) => setBorderStyle({ enabled })} />
@@ -522,7 +522,7 @@ export const KeycapSettings = () => {
                     </Item>
                     <Item variant="muted">
                         <ItemContent>
-                            <ItemTitle>Width</ItemTitle>
+                            <ItemTitle>厚度</ItemTitle>
                         </ItemContent>
                         <ItemActions>
                             <NumberInput
@@ -537,7 +537,7 @@ export const KeycapSettings = () => {
                     </Item>
                     <Item variant="muted" className={modifier.highlight ? "" : "col-span-2"}>
                         <ItemContent>
-                            <ItemTitle>Color</ItemTitle>
+                            <ItemTitle>颜色</ItemTitle>
                         </ItemContent>
                         <ItemActions>
                             <ColorInput
@@ -550,7 +550,7 @@ export const KeycapSettings = () => {
                     {
                         modifier.highlight && <Item variant="muted">
                             <ItemContent>
-                                <ItemTitle>Modifier Color</ItemTitle>
+                                <ItemTitle>修饰键颜色</ItemTitle>
                             </ItemContent>
                             <ItemActions>
                                 <ColorInput
@@ -564,7 +564,7 @@ export const KeycapSettings = () => {
                 </ItemGrid>
                 <Item variant="muted">
                     <ItemContent>
-                        <ItemTitle>Radius</ItemTitle>
+                        <ItemTitle>圆角</ItemTitle>
                     </ItemContent>
                     <ItemActions>
                         <div className="w-4 h-4 border-l-2 border-t-2 border-primary/50" style={{ borderTopLeftRadius: `${border.radius * 100}%` }} />
@@ -584,13 +584,13 @@ export const KeycapSettings = () => {
 
         <Collapsible>
             <CollapsibleTrigger>
-                <h2 className="text-sm text-muted-foreground font-medium">Background</h2>
+                <h2 className="text-sm text-muted-foreground font-medium">背景</h2>
             </CollapsibleTrigger>
             <CollapsibleContent className="flex flex-col gap-y-4 pt-4">
                 <ItemGrid>
                     <Item variant="muted">
                         <ItemContent className="min-h-6 h-full justify-center">
-                            <ItemTitle>Enable</ItemTitle>
+                            <ItemTitle>开启</ItemTitle>
                         </ItemContent>
                         <ItemActions>
                             <Switch checked={background.enabled} onCheckedChange={(enabled) => setBackgroundStyle({ enabled })} />
@@ -598,7 +598,7 @@ export const KeycapSettings = () => {
                     </Item>
                     <Item variant="muted">
                         <ItemContent>
-                            <ItemTitle>Color</ItemTitle>
+                            <ItemTitle>颜色</ItemTitle>
                         </ItemContent>
                         <ItemActions>
                             <ColorInput value={background.color} onChange={(color) => setBackgroundStyle({ color })} disabled={!background.enabled} />
