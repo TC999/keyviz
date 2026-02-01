@@ -48,7 +48,7 @@ const MultiSelect = React.forwardRef<
       options,
       onValueChange,
       defaultValue = [],
-      placeholder = 'Select options',
+      placeholder = '选择选项',
       animation = 0,
       maxCount = 3,
       modalPopover = false,
@@ -164,7 +164,7 @@ const MultiSelect = React.forwardRef<
                       )}
                       style={{ animationDuration: `${animation}s` }}
                     >
-                      {`+ ${selectedValues.length - maxCount} more`}
+                      {`+ ${selectedValues.length - maxCount} 项`}
                       <XCircle
                         className='ml-2 h-4 w-4 cursor-pointer'
                         onClick={(event) => {
@@ -203,11 +203,11 @@ const MultiSelect = React.forwardRef<
         >
           <Command>
             <CommandInput
-              placeholder='Search...'
+              placeholder='搜索...'
               onKeyDown={handleInputKeyDown}
             />
             <CommandList>
-              <CommandEmpty>No results found.</CommandEmpty>
+              <CommandEmpty>未找到结果。</CommandEmpty>
               <CommandGroup>
                 <CommandItem
                   key='all'
@@ -224,7 +224,7 @@ const MultiSelect = React.forwardRef<
                   >
                     <CheckIcon className='h-4 w-4' />
                   </div>
-                  <span>(Select All)</span>
+                  <span>(全选)</span>
                 </CommandItem>
                 {options.map((option) => {
                   const isSelected = selectedValues.includes(option.value);
@@ -271,7 +271,7 @@ const MultiSelect = React.forwardRef<
                         onSelect={handleClear}
                         className='flex-1 justify-center cursor-pointer border-r'
                       >
-                        Clear
+                        清除
                       </CommandItem>
                     </>
                   )}
@@ -279,7 +279,7 @@ const MultiSelect = React.forwardRef<
                     onSelect={() => setIsPopoverOpen(false)}
                     className='flex-1 justify-center cursor-pointer max-w-full'
                   >
-                    Close
+                    关闭
                   </CommandItem>
                 </div>
               </CommandGroup>
