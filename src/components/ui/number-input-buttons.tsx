@@ -26,7 +26,7 @@ export const NumberInput = ({ value, onChange, min, max, step }: { value: number
                 variant="outline"
                 size="icon"
                 type="button"
-                aria-label="Decrement"
+                aria-label="减少"
                 onClick={() => onChange(value - (step ?? 1))}
                 disabled={value <= (min ?? -Infinity)}
             >
@@ -36,7 +36,7 @@ export const NumberInput = ({ value, onChange, min, max, step }: { value: number
                 variant="outline"
                 size="icon"
                 type="button"
-                aria-label="Increment"
+                aria-label="增加"
                 onClick={() => onChange(value + (step ?? 1))}
                 disabled={value >= (max ?? Infinity)}
             >
