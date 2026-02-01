@@ -26,6 +26,18 @@ const AlignmentSelector: React.FC<AlignmentSelectorProps> = ({ value, onChange, 
         { value: 'bottom-right' as Alignment, icon: ArrowDownRightIcon, }
     ]
 
+    const chineseMap: { [key in Alignment]: string } = {
+        'top-left': '左上',
+        'top-center': '中上',
+        'top-right': '右上',
+        'center-left': '左中',
+        'center': '居中',
+        'center-right': '右中',
+        'bottom-left': '左下',
+        'bottom-center': '中下',
+        'bottom-right': '右下',
+    };
+
     return (
         <div className={cn("p-2 bg-background border border-primary/20 rounded-xl w-fit", className)}>
             <div className="w-full h-full grid grid-cols-3 grid-rows-3 gap-2">
@@ -36,8 +48,8 @@ const AlignmentSelector: React.FC<AlignmentSelectorProps> = ({ value, onChange, 
                             <button
                                 key={pos}
                                 onClick={() => onChange(pos)}
-                                title={pos.replace('-', ' ')} // Tooltip on hover
-                                aria-label={`Align ${pos}`}
+                                title={chineseMap[pos]} // Tooltip on hover
+                                aria-label={`${chineseMap[pos]}对齐`}
                                 aria-pressed={isSelected}
                                 className={`
                   relative rounded-md transition-all duration-200 ease-in-out
