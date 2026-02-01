@@ -1,18 +1,27 @@
 import { KeyOverlay } from "@/components/key-overlay";
 import { MouseOverlay } from "@/components/mouse-overlay";
+import { MONITOR_MODE_EACH } from "@/lib/monitors";
 import { KEY_EVENT_STORE, KeyEventStore, useKeyEvent } from "@/stores/key_event";
 import { KEY_STYLE_STORE, KeyStyleStore, useKeyStyle } from '@/stores/key_style';
 import { listenForUpdates } from '@/stores/sync';
 import { EventPayload } from "@/types/event";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
-import { primaryMonitor } from "@tauri-apps/api/window";
+import { availableMonitors, getCurrentWindow, primaryMonitor } from "@tauri-apps/api/window";
 import { useEffect, useState, } from "react";
 
 export function Visualization() {
   const monitor = useKeyStyle((state) => state.appearance.monitor);
   const onEvent = useKeyEvent((state) => state.onEvent);
   const tick = useKeyEvent((state) => state.tick);
+
+  const [monitorRects, setMonitorRects] = useState<Array<{
+    key: string;
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+  }>>([]);
 
   // listening for input events
   const [isListening, setIsListening] = useState(true);
@@ -48,6 +57,36 @@ export function Visualization() {
       }
       if (!monitorName) return;
       await invoke("set_main_window_monitor", { monitorName });
+
+      if (monitorName !== MONITOR_MODE_EACH) {
+        setMonitorRects([]);
+        return;
+      }
+
+      const [monitors, scale] = await Promise.all([
+        availableMonitors(),
+        getCurrentWindow().scaleFactor(),
+      ]);
+      if (monitors.length === 0 || scale <= 0) {
+        setMonitorRects([]);
+        return;
+      }
+
+      const bounds = monitors.reduce(
+        (acc, m) => ({
+          minX: Math.min(acc.minX, m.position.x),
+          minY: Math.min(acc.minY, m.position.y),
+        }),
+        { minX: Infinity, minY: Infinity }
+      );
+
+      setMonitorRects(monitors.map((m, index) => ({
+        key: m.name ?? index.toString(),
+        left: (m.position.x - bounds.minX) / scale,
+        top: (m.position.y - bounds.minY) / scale,
+        width: m.size.width / scale,
+        height: m.size.height / scale,
+      })));
     }
     set_monitor();
   }, [monitor]);
@@ -56,6 +95,22 @@ export function Visualization() {
 
   return <div className="w-screen h-screen relative overflow-hidden">
     <MouseOverlay />
-    <KeyOverlay />
+    {
+      monitor === MONITOR_MODE_EACH && monitorRects.length > 0
+        ? monitorRects.map((rect) => (
+          <div
+            key={rect.key}
+            className="absolute top-0 left-0 overflow-hidden"
+            style={{
+              transform: `translate3d(${rect.left}px, ${rect.top}px, 0)`,
+              width: rect.width,
+              height: rect.height,
+            }}
+          >
+            <KeyOverlay />
+          </div>
+        ))
+        : <KeyOverlay />
+    }
   </div>;
 }

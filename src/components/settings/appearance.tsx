@@ -6,6 +6,7 @@ import { NumberInput } from "@/components/ui/number-input";
 import { NumberScrubber } from "@/components/ui/number-input-scrub";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Toggle } from "@/components/ui/toggle";
+import { MONITOR_MODE_EACH, MONITOR_MODE_MERGED } from "@/lib/monitors";
 import { useKeyEvent } from "@/stores/key_event";
 import { useKeyStyle } from "@/stores/key_style";
 import { ComputerIcon, KeyframesDoubleIcon, KeyframesDoubleRemoveIcon, Link02Icon, ParagraphSpacingIcon, TextAlignLeftIcon, Time03Icon, Unlink02Icon } from "@hugeicons/core-free-icons";
@@ -52,13 +53,15 @@ export const AppearanceSettings = () => {
                     <Select
                         value={appearance.monitor ?? ""}
                         onValueChange={(value) => {
-                            getAllWindows().then(windows => {
-                                const window = windows.find(w => w.label === "main");
-                                const monitor = monitors.find(m => m.name === value);
-                                if (monitor && window) {
-                                    window.setPosition(monitor.position);
-                                }
-                            });
+                            if (value !== MONITOR_MODE_MERGED && value !== MONITOR_MODE_EACH) {
+                                getAllWindows().then(windows => {
+                                    const window = windows.find(w => w.label === "main");
+                                    const monitor = monitors.find(m => m.name === value);
+                                    if (monitor && window) {
+                                        window.setPosition(monitor.position);
+                                    }
+                                });
+                            }
                             setAppearance({ monitor: value });
                         }}
                     >
@@ -67,6 +70,8 @@ export const AppearanceSettings = () => {
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
+                                <SelectItem value={MONITOR_MODE_MERGED}>合并显示器</SelectItem>
+                                <SelectItem value={MONITOR_MODE_EACH}>每个显示器</SelectItem>
                                 {
                                     monitors.map((monitor, index) => (
                                         <SelectItem key={monitor.name} value={monitor.name ?? index.toString()}>
