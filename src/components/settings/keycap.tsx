@@ -269,6 +269,7 @@ export const KeycapSettings = () => {
                                     <SelectContent>
                                         <SelectItem value="text">完整名</SelectItem>
                                         <SelectItem value="text-short">缩写名</SelectItem>
+                                        <SelectItem value="text-cn">中文名</SelectItem>
                                         <SelectItem value="icon">仅图标</SelectItem>
                                     </SelectContent>
                                 </Select>

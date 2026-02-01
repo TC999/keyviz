@@ -19,7 +19,11 @@ export const MinimalKeycap = ({ event, isPressed }: KeycapProps) => {
         gap: ".1em",
     };
 
-    const label = display?.shortLabel ?? display.label;
+    const label = text.variant === "text-short"
+        ? display.shortLabel ?? display.label
+        : text.variant === "text-cn"
+            ? display.cnLabel ?? display.label
+            : display.label;
     let child = <>{label}</>;
 
     if (event.isModifier() && layout.showIcon && display.icon) {
@@ -30,7 +34,7 @@ export const MinimalKeycap = ({ event, isPressed }: KeycapProps) => {
             child = <>
                 <Icon color={color} size={text.size} />
                 <div style={{ ...textStyle }}>
-                    {text.variant === "text" ? display.label : label}
+                    {label}
                 </div>
             </>;
         }

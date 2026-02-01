@@ -24,12 +24,16 @@ function switchPlatform<T>(config: SwitchPlatformConfig<T>): T {
 export interface DisplayData {
     // textual representation
     label: string;
+    // chinese label if any
+    cnLabel?: string;
     // short label if any like ctrl for control
     shortLabel?: string;
     // glyph representation if any like ⌃ for control
     glyph?: string;
     // secondary symbol if any like @ for digit 2
     symbol?: string;
+    // chinese secondary symbol if any
+    cnSymbol?: string;
     // icon path if can be represented with iconography
     icon?: LucideIcon;
     // category
@@ -54,11 +58,13 @@ export const keymaps: Record<string, DisplayData> = {
     // ───────────── Navigation ─────────────
     PrintScreen: {
         label: "print screen",
+        cnLabel: "截屏",
         shortLabel: "prt scrn",
         icon: ImageIcon,
     },
     Pause: {
         label: "pause break",
+        cnLabel: "暂停",
         shortLabel: "pause",
         icon: PauseIcon,
     },
@@ -66,6 +72,10 @@ export const keymaps: Record<string, DisplayData> = {
         label: switchPlatform({
             windows: "backspace",
             macos: "delete",
+        }),
+        cnLabel: switchPlatform({
+            windows: "退格",
+            macos: "删除",
         }),
         shortLabel: switchPlatform({
             windows: "back",
@@ -77,12 +87,14 @@ export const keymaps: Record<string, DisplayData> = {
     },
     Tab: {
         label: "tab",
+        cnLabel: "制表",
         glyph: "⇆",
         icon: ArrowLeftRightIcon,
         category: "special",
     },
     Space: {
         label: "space",
+        cnLabel: "空格",
         glyph: "⎵",
         icon: SpaceIcon,
     },
@@ -91,22 +103,26 @@ export const keymaps: Record<string, DisplayData> = {
             windows: "enter",
             macos: "return",
         }),
+        cnLabel: "回车",
         glyph: "↩",
         icon: ReturnIcon,
         category: "special",
     },
     Apps: {
         label: "menu",
+        cnLabel: "菜单",
         glyph: "☰",
     },
     Insert: {
         label: "insert",
+        cnLabel: "插入",
         shortLabel: "ins",
         glyph: "⇥",
         icon: ArrowRightToLineIcon,
     },
     Delete: {
         label: "delete",
+        cnLabel: "删除",
         shortLabel: "del",
         glyph: "⌦",
         icon: DeleteIcon,
@@ -114,18 +130,21 @@ export const keymaps: Record<string, DisplayData> = {
     },
     Home: {
         label: "home",
+        cnLabel: "行首",
         glyph: "⇱",
         icon: MoveUpLeftIcon,
         category: "navigation",
     },
     End: {
         label: "end",
+        cnLabel: "行尾",
         glyph: "⇲",
         icon: MoveDownRightIcon,
         category: "navigation",
     },
     PageUp: {
         label: "page up",
+        cnLabel: "向上翻页",
         shortLabel: "pg up",
         glyph: "⤒",
         icon: ArrowUpToLineIcon,
@@ -133,6 +152,7 @@ export const keymaps: Record<string, DisplayData> = {
     },
     PageDown: {
         label: "page down",
+        cnLabel: "向下翻页",
         shortLabel: "pg dn",
         glyph: "⤓",
         icon: ArrowDownToLineIcon,
@@ -140,44 +160,52 @@ export const keymaps: Record<string, DisplayData> = {
     },
     UpArrow: {
         label: "up",
+        cnLabel: "上",
         glyph: "↑",
         icon: ArrowUpIcon,
         category: "arrow",
     },
     DownArrow: {
         label: "down",
+        cnLabel: "下",
         glyph: "↓",
         icon: ArrowDownIcon,
         category: "arrow",
     },
     LeftArrow: {
         label: "left",
+        cnLabel: "左",
         glyph: "←",
         icon: ArrowLeftIcon,
         category: "arrow",
     },
     RightArrow: {
         label: "right",
+        cnLabel: "右",
         glyph: "→",
         icon: ArrowRightIcon,
         category: "arrow",
     },
     CapsLock: {
         label: "caps lock",
+        cnLabel: "大写锁定",
         glyph: "⇪",
         icon: ArrowBigUpDashIcon,
     },
     ScrollLock: {
         label: "scroll lock",
+        cnLabel: "滚动锁定",
         glyph: "🖱",
         icon: MouseIcon,
     },
     NumLock: {
         label: "num lock",
+        cnLabel: "数字锁定",
         icon: LockIcon,
     },
     Escape: {
         label: "escape",
+        cnLabel: "退出",
         shortLabel: "esc",
         glyph: "⎋",
         icon: CircleArrowOutUpLeftIcon,
@@ -327,22 +355,26 @@ export const keymaps: Record<string, DisplayData> = {
     KpComma: { label: ",", category: "punctuation" },
     KpReturn: {
         label: "Enter",
+        cnLabel: "回车",
         glyph: "↩",
         category: "numpad",
     },
     KpDecimal: {
         label: ".",
         symbol: "del",
+        cnSymbol: "删除",
         category: "numpad",
     },
     Kp0: {
         label: "0",
         symbol: "ins",
+        cnSymbol: "插入",
         category: "numpad",
     },
     Kp1: {
         label: "1",
         symbol: "end",
+        cnSymbol: "行尾",
         category: "numpad",
     },
     Kp2: {
@@ -353,6 +385,7 @@ export const keymaps: Record<string, DisplayData> = {
     Kp3: {
         label: "3",
         symbol: "pg dn",
+        cnSymbol: "向下翻页",
         category: "numpad",
     },
     Kp4: {
@@ -373,6 +406,7 @@ export const keymaps: Record<string, DisplayData> = {
     Kp7: {
         label: "7",
         symbol: "home",
+        cnSymbol: "行首",
         category: "numpad",
     },
     Kp8: {
@@ -383,56 +417,66 @@ export const keymaps: Record<string, DisplayData> = {
     Kp9: {
         label: "9",
         symbol: "pg up",
+        cnSymbol: "向上翻页",
         category: "numpad",
     },
     // ───────────── Media ─────────────
     VolumeUp: {
         label: "volume up",
+        cnLabel: "增大音量",
         shortLabel: "vol +",
         icon: Volume2Icon,
     },
     VolumeDown: {
         label: "volume down",
+        cnLabel: "减小音量",
         shortLabel: "vol -",
         icon: Volume2Icon,
     },
     VolumeMute: {
         label: "mute",
+        cnLabel: "静音",
         icon: VolumeXIcon,
     },
 
     // ───────────── Mouse Events ─────────────
     Left: {
         label: "left click",
+        cnLabel: "左键",
         shortLabel: "left",
         icon: MouseLeftClickIcon,
         category: "mouse",
     },
     Middle: {
         label: "middle click",
+        cnLabel: "中键",
         shortLabel: "middle",
         icon: MouseMiddleClickIcon,
         category: "mouse",
     },
     Right: {
         label: "right click",
+        cnLabel: "右键",
         shortLabel: "right",
         icon: MouseRightClickIcon,
         category: "mouse",
     },
     Drag: {
         label: "drag",
+        cnLabel: "拖动",
         icon: MouseRightDragIcon,
         category: "mouse",
     },
     ScrollUp: {
         label: "scroll up",
+        cnLabel: "向上滚动",
         shortLabel: "scroll",
         icon: MouseScrollUpIcon,
         category: "mouse",
     },
     ScrollDown: {
         label: "scroll down",
+        cnLabel: "向下滚动",
         shortLabel: "scroll",
         icon: MouseScrollDownIcon,
         category: "mouse",
@@ -445,6 +489,7 @@ export const keymaps: Record<string, DisplayData> = {
 ['ControlLeft', 'ControlRight'].forEach((key) => {
     keymaps[key] = {
         label: "control",
+        cnLabel: "控制",
         shortLabel: "ctrl",
         glyph: "⌃",
         icon: ChevronUpIcon,
@@ -457,12 +502,14 @@ export const keymaps: Record<string, DisplayData> = {
     keymaps[key] = switchPlatform({
         windows: {
             label: "win",
+            cnLabel: "徽标",
             glyph: "\u229E",
             icon: Grid2X2Icon,
             category: "modifier",
         },
         macos: {
             label: "command",
+            cnLabel: "命令",
             shortLabel: "cmd",
             glyph: "⌘",
             icon: CommandIcon,
@@ -470,6 +517,7 @@ export const keymaps: Record<string, DisplayData> = {
         },
         linux: {
             label: "Meta",
+            cnLabel: "超级",
             glyph: "✦",
             icon: SparkleIcon,
             category: "modifier",
@@ -483,6 +531,10 @@ export const keymaps: Record<string, DisplayData> = {
         label: switchPlatform({
             windows: "alt",
             macos: "option",
+        }),
+        cnLabel: switchPlatform({
+            windows: "切换",
+            macos: "选项",
         }),
         shortLabel: switchPlatform({
             windows: "alt",
@@ -498,6 +550,7 @@ export const keymaps: Record<string, DisplayData> = {
 ['ShiftLeft', 'ShiftRight'].forEach((key) => {
     keymaps[key] = {
         label: "shift",
+        cnLabel: "上档",
         glyph: "⇧",
         icon: ArrowBigUpIcon,
         category: "modifier",

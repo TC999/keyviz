@@ -19,7 +19,13 @@ export const KeycapBase = ({ event }: { event: KeyEvent }) => {
 
   const label = text.variant === "text-short"
     ? display.shortLabel ?? display.label
+    : text.variant === "text-cn"
+      ? display.cnLabel ?? display.label
     : display.label;
+
+  const symbol = text.variant === "text-cn"
+    ? display.cnSymbol ?? display.symbol
+    : display.symbol;
 
   const flexAlignment = alignmentForRow[text.alignment];
 
@@ -50,7 +56,7 @@ export const KeycapBase = ({ event }: { event: KeyEvent }) => {
     }
   }
   // ───────────── With Symbol ─────────────
-  else if (layout.showSymbol && display.symbol) {
+  else if (layout.showSymbol && symbol) {
     return <div
       className="w-full h-full flex flex-col"
       style={{
@@ -61,8 +67,8 @@ export const KeycapBase = ({ event }: { event: KeyEvent }) => {
         justifyContent: flexAlignment.alignItems
       }}
     >
-      <span>{display.symbol}</span>
-      <span className="font-semibold">{display.label}</span>
+      <span>{symbol}</span>
+      <span className="font-semibold">{label}</span>
     </div>
   }
   // ───────────── Numpad ─────────────
@@ -78,7 +84,7 @@ export const KeycapBase = ({ event }: { event: KeyEvent }) => {
     >
       <div>{label}</div>
       {
-        display.symbol && <div>{display.symbol}</div>
+        symbol && <div>{symbol}</div>
       }
     </div>;
   }

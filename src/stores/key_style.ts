@@ -45,7 +45,7 @@ export interface TextSettings {
     size: number;
     color: string;
     caps: "uppercase" | "capitalize" | "lowercase";
-    variant: "icon" | "text" | "text-short";
+    variant: "icon" | "text" | "text-short" | "text-cn";
     alignment: Alignment;
 }
 
