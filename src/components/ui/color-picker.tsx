@@ -339,7 +339,7 @@ export const ColorPickerOutput = ({ className, ...props }: ComponentProps<typeof
   return (
     <Select value={mode} onValueChange={setMode}>
       <SelectTrigger className={cn('h-8 w-18 px-2 text-xs', className)} {...props}>
-        <SelectValue placeholder="Mode" />
+        <SelectValue placeholder="模式" />
       </SelectTrigger>
       <SelectContent>
         {formats.map((f) => (

@@ -351,7 +351,7 @@ export const ColorPickerOutput = ({ className, ...props }: ComponentProps<typeof
   return (
     <Select value={mode} onValueChange={setMode}>
       <SelectTrigger className={cn('h-8 w-18 px-2 text-xs', className)} {...props}>
-        <SelectValue placeholder="Mode" />
+        <SelectValue placeholder="模式" />
       </SelectTrigger>
       <SelectContent>
         {formats.map((f) => (
@@ -558,8 +558,8 @@ export const ColorPicker = ({
         // If switching to gradient, use current solid as start?
       }} className="w-full">
         <TabsList className="mb-2 w-full grid grid-cols-2">
-          <TabsTrigger value="solid">Solid</TabsTrigger>
-          <TabsTrigger value="gradient">Gradient</TabsTrigger>
+          <TabsTrigger value="solid">纯色</TabsTrigger>
+          <TabsTrigger value="gradient">渐变</TabsTrigger>
         </TabsList>
 
         <ColorLogicProvider color={activeColor} onChange={handleSolidChange}>
