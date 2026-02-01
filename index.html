@@ -4,6 +4,48 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      (() => {
+        try {
+          if (!location.hash.startsWith("#/settings")) return;
+          const root = document.documentElement;
+          root.dataset.page = "settings";
+          const saved = localStorage.getItem("vite-ui-theme");
+          if (saved === "light" || saved === "dark") root.classList.add(saved);
+        } catch {
+          // ignore
+        }
+      })();
+    </script>
+    <style>
+      html,
+      body {
+        background: transparent;
+      }
+
+      html[data-page="settings"] body {
+        background: #ffffff;
+        color: #111111;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        html[data-page="settings"] body {
+          background: #0a0a0a;
+          color: #f5f5f5;
+        }
+      }
+
+      html[data-page="settings"].dark body {
+        background: #0a0a0a;
+        color: #f5f5f5;
+      }
+
+      html[data-page="settings"].light body {
+        background: #ffffff;
+        color: #111111;
+      }
+    </style>
     <title>Keyviz</title>
   </head>
 
