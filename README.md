@@ -39,16 +39,15 @@ Keyviz 是一款**免费开源**的按键可视化软件，可以实时显示您
 
 ## 📥 安装
 
-### Windows & macOS
+### Windows & macOS & Linux (x11)
 前往 **[GitHub 发行版](https://github.com/zetaloop/keyviz/releases)** 页面下载最新的汉化版。
 
 *   **Windows:** 下载 `.msi` 安装包，跟随操作步骤进行安装。
 *   **macOS:** 使用 `.dmg` 安装包。
     **注意**：Keyviz 需要 **输入监控** 和 **辅助功能** 权限，请在设置中允许：
     `系统设置 > 隐私与安全性 > 输入监控 / 辅助功能`
-
-### Linux (x11)
-Keyviz 支持 X11 协议的 Linux 系统，目前请您按照下方的说明自行构建尝试。
+    如果提示 **应用损坏**，请在终端中运行 `xattr -rd com.apple.quarantine /Applications/keyviz.app` 解除隔离。
+*   **Linux**：目前 Keyviz 支持 X11 协议，请下载适用于您发行版的安装包 `.deb`/`.rpm`/`.AppImage`。
 
 </br>
 
