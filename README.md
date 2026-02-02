@@ -1,11 +1,11 @@
 # [Keyviz](https://keyviz.org) 汉化版
 
 <div>
-   <img src="https://img.shields.io/github/v/release/zetaloop/keyviz?style=flat-square&label=汉化版本" alt="汉化版本">
-   <img src="https://img.shields.io/github/downloads/zetaloop/keyviz/total?style=flat-square&label=下载量" alt="下载量">
-   <img src="https://img.shields.io/github/stars/zetaloop/keyviz?style=flat-square&label=星标" alt="星标">
-   <img src="https://img.shields.io/github/license/zetaloop/keyviz?style=flat-square&label=许可证" alt="许可证">
-   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS-lightgrey?style=flat-square&label=平台" alt="平台支持">
+   <img src="https://img.shields.io/github/v/release/zetaloop/keyviz?style=flat-square&label=%E6%B1%89%E5%8C%96%E7%89%88%E6%9C%AC" alt="汉化版本">
+   <img src="https://img.shields.io/github/downloads/zetaloop/keyviz/total?style=flat-square&label=%E4%B8%8B%E8%BD%BD%E9%87%8F" alt="下载量">
+   <img src="https://img.shields.io/github/stars/zetaloop/keyviz?style=flat-square&label=%E6%98%9F%E6%A0%87" alt="星标">
+   <img src="https://img.shields.io/github/license/zetaloop/keyviz?style=flat-square&label=%E8%AE%B8%E5%8F%AF%E8%AF%81" alt="许可证">
+   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS-lightgrey?style=flat-square&label=%E5%B9%B3%E5%8F%B0" alt="平台支持">
 </div>
 
 Keyviz 是一款**免费开源**的按键可视化软件，可以实时显示您的按键和鼠标操作！<br>无论是在教学、演讲还是团队协作中，您都能让观众一目了然地看到操作过程。
