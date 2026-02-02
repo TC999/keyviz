@@ -2,8 +2,16 @@ name: Build
 
 on:
   workflow_dispatch:
-  release:
-    types: [published]
+    inputs:
+      publish:
+        type: boolean
+        default: false
+      draft:
+        type: boolean
+        default: true
+      tag:
+        type: string
+        required: false
 
 jobs:
   build:
@@ -76,10 +84,9 @@ jobs:
             src-tauri/target/release/bundle/deb/*.deb
             src-tauri/target/release/bundle/rpm/*.rpm
             src-tauri/target/release/bundle/appimage/*.AppImage
-            src-tauri/target/release/bundle/pacman/*.tar.zst
 
   release:
-    if: github.event_name == 'release'
+    if: inputs.publish
     needs: [build]
     runs-on: ubuntu-latest
     permissions:
@@ -95,6 +102,8 @@ jobs:
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
+          draft: ${{ inputs.draft }}
+          tag_name: ${{ inputs.tag }}
           fail_on_unmatched_files: false
           files: |
             dist/**/*.msi
@@ -103,4 +112,3 @@ jobs:
             dist/**/*.deb
             dist/**/*.rpm
             dist/**/*.AppImage
-            dist/**/*.tar.zst
