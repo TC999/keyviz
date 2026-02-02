@@ -183,7 +183,7 @@ export const KeycapSettings = () => {
                             <SelectItem value="minimal">极简</SelectItem>
                             <SelectItem value="laptop">笔记本</SelectItem>
                             <SelectItem value="lowprofile">矮轴</SelectItem>
-                            <SelectItem value="pbt" >机械</SelectItem>
+                            <SelectItem value="pbt" >PBT</SelectItem>
                         </SelectGroup>
                     </SelectContent>
                 </Select>
