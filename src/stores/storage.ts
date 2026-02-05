@@ -8,7 +8,7 @@ const isSender = getCurrentWindow().label === "settings";
 
 const portablePath = await invoke<string | null>('get_portable_store_path');
 const store = await load(portablePath ?? 'store.json', {
-    autoSave: isSender ? 1000 : false,
+    autoSave: 1000,
     defaults: {},
 });
 
