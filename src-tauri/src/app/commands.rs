@@ -33,13 +33,15 @@ fn get_app_base_dir() -> Option<PathBuf> {
     }
 }
 
-#[tauri::command]
-pub fn get_portable_store_path() -> Option<String> {
+pub fn get_portable_store_path_internal() -> Option<PathBuf> {
     let base_dir = get_app_base_dir()?;
     let portable_path = base_dir.join("store.json");
-    portable_path
-        .exists()
-        .then(|| portable_path.to_string_lossy().into_owned())
+    portable_path.exists().then_some(portable_path)
+}
+
+#[tauri::command]
+pub fn get_portable_store_path() -> Option<String> {
+    get_portable_store_path_internal().map(|p| p.to_string_lossy().into_owned())
 }
 
 #[tauri::command]

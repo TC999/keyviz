@@ -2,6 +2,8 @@ use serde::Deserialize;
 use tauri::{image::Image, include_image, Emitter, Wry};
 use tauri_plugin_store::StoreExt;
 
+use crate::app::commands::get_portable_store_path_internal;
+
 #[derive(Default)]
 pub struct AppState {
     pub listening: bool,
@@ -17,8 +19,11 @@ impl AppState {
     pub fn new(app: &tauri::AppHandle) -> Self {
         let mut toggle_shortcut = vec!["Shift".to_string(), "F10".to_string()];
 
-        // load saved config from store
-        if let Ok(store) = app.store("store.json") {
+        let store_path = get_portable_store_path_internal()
+            .map(|p| p.to_string_lossy().into_owned())
+            .unwrap_or_else(|| "store.json".to_string());
+
+        if let Ok(store) = app.store(&store_path) {
             if let Some(value) = store.get("key_event_store") {
                 // the value comes in as a String: "{\"state\": ...}"
                 if let Some(json_str) = value.as_str() {
