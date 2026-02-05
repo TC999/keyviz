@@ -9,7 +9,7 @@ use tauri::{
 };
 
 mod app;
-use app::commands::{log, set_main_window_monitor, set_toggle_shortcut};
+use app::commands::{get_portable_store_path, log, set_main_window_monitor, set_toggle_shortcut};
 use app::event::start_listener;
 use app::state::AppState;
 use app::window::config_window;
@@ -94,6 +94,7 @@ pub fn run() {
         })
         .invoke_handler(tauri::generate_handler![
             log,
+            get_portable_store_path,
             set_toggle_shortcut,
             set_main_window_monitor
         ])

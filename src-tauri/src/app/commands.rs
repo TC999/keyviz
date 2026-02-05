@@ -1,4 +1,4 @@
-use std::sync::Mutex;
+use std::{path::PathBuf, sync::Mutex};
 
 use tauri::{Manager, PhysicalPosition, PhysicalSize};
 
@@ -6,6 +6,41 @@ use crate::app::state::AppState;
 
 const MONITOR_MODE_MERGED: &str = "__keyviz_monitor_merged__";
 const MONITOR_MODE_EACH: &str = "__keyviz_monitor_each__";
+
+fn get_app_base_dir() -> Option<PathBuf> {
+    #[cfg(target_os = "linux")]
+    if let Ok(appimage_path) = std::env::var("APPIMAGE") {
+        return std::path::Path::new(&appimage_path)
+            .parent()
+            .map(|p| p.to_path_buf());
+    }
+
+    let exe_path = std::env::current_exe().ok()?;
+
+    #[cfg(target_os = "macos")]
+    {
+        exe_path
+            .parent()?
+            .parent()?
+            .parent()?
+            .parent()
+            .map(|p| p.to_path_buf())
+    }
+
+    #[cfg(not(target_os = "macos"))]
+    {
+        exe_path.parent().map(|p| p.to_path_buf())
+    }
+}
+
+#[tauri::command]
+pub fn get_portable_store_path() -> Option<String> {
+    let base_dir = get_app_base_dir()?;
+    let portable_path = base_dir.join("store.json");
+    portable_path
+        .exists()
+        .then(|| portable_path.to_string_lossy().into_owned())
+}
 
 #[tauri::command]
 pub fn log(message: String) {

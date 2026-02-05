@@ -1,3 +1,4 @@
+import { invoke } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { load } from '@tauri-apps/plugin-store';
 import { StateStorage } from 'zustand/middleware';
@@ -5,8 +6,8 @@ import { StateStorage } from 'zustand/middleware';
 // only allow writes from the settings window
 const isSender = getCurrentWindow().label === "settings";
 
-// initialize the store instance
-const store = await load('store.json', {
+const portablePath = await invoke<string | null>('get_portable_store_path');
+const store = await load(portablePath ?? 'store.json', {
     autoSave: isSender ? 1000 : false,
     defaults: {},
 });
